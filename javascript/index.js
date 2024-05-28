@@ -8,19 +8,22 @@ function updateTime() {
   losAngelesTimeElement.innerHTML = losAngelesTime.format(
     "h:mm:ss [<small>]A[</small>]"
   );
-  // berlin
-  let berlinElement = document.querySelector("#berlin");
-  let berlinDateElement = berlinElement.querySelector(".date");
-  let berlinTimeElement = berlinElement.querySelector(".time");
-  let berlinTime = moment().tz("Europe/Berlin");
-  berlinDateElement.innerHTML = berlinTime.format("MMM Do YYYY");
-  berlinTimeElement.innerHTML = berlinTime.format(
+  // copenhagen
+  let copenhagenElement = document.querySelector("#copenhagen");
+  let copenhagenDateElement = copenhagenElement.querySelector(".date");
+  let copenhagenTimeElement = copenhagenElement.querySelector(".time");
+  let copenhagenTime = moment().tz("Europe/Copenhagen");
+  copenhagenDateElement.innerHTML = copenhagenTime.format("MMM Do YYYY");
+  copenhagenTimeElement.innerHTML = copenhagenTime.format(
     "h:mm:ss [<small>]A[</small>]"
   );
 }
 
 function updateCity(event) {
   let cityTimeZone = event.target.value;
+  if (cityTimeZone === "current") {
+    cityTimeZone = moment.tz.guess();
+  }
   let cityName = cityTimeZone.split("/")[1];
   let cityTime = moment().tz(cityTimeZone);
   let citiesElement = document.querySelector("#cities");
